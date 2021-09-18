@@ -13,7 +13,7 @@
 
     <context:property-placeholder location="classpath:application.properties" />
 
-    <beans:bean id="appProperties" class="com.lil.springperformance.ui.domain.DemoProperties">
+    <beans:bean id="appProperties" class="com.lil.springperformance.client.domain.DemoProperties">
         <property name="runtimeProperties">
             <props>
                 <prop key="server.port">${server.port}</prop>

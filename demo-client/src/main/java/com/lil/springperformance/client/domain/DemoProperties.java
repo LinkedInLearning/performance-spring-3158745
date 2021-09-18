@@ -1,4 +1,4 @@
-package com.lil.springperformance.ui.domain;
+package com.lil.springperformance.client.domain;
 
 import java.util.Properties;
 

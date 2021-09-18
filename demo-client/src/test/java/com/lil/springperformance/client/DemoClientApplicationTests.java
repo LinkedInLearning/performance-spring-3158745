@@ -1,13 +1,12 @@
-package com.lil.springperformance.ui;
+package com.lil.springperformance.client;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class DemoUiApplicationTests {
+class DemoClientApplicationTests {
 
-	@Test
-	void contextLoads() {
-	}
-
+    @Test
+    void contextLoads() { }
 }
+

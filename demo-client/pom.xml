@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.lil.springperformance</groupId>
-	<artifactId>ui</artifactId>
+	<artifactId>client</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>demo-ui</name>
+	<name>demo-client</name>
 	<description>Learning project for Spring performance tuning</description>
 	<properties>
 		<java.version>11</java.version>

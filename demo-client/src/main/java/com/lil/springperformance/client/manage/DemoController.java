@@ -1,4 +1,4 @@
-package com.lil.springperformance.ui.manage;
+package com.lil.springperformance.client.manage;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
