@@ -1,8 +1,6 @@
-# CODE CHALLENGE 03_04
-
 ## Instructions
 
-Your challenge has two parts.
+Your JVM performance challenge has two parts.
 
 **Part 1**
 
