@@ -4,7 +4,9 @@
 
 Your challenge has two parts.
 
-1. Force an OutOfMemory runtime error to be thrown when you run the demo-client application with property setting ```demo.mode=visual-vm```
+**Part 1**
+
+Force an OutOfMemory runtime error to be thrown when you run the demo-client application using property setting ```demo.mode=visual-vm```
 
 HINT: Set the ```demo.mode``` property in ```resources/application.properties```
 
@@ -14,7 +16,13 @@ HINT: Set your max JVM heap runtime parameter for the demo-client application to
 
 HINT: If you get this right, it will take about 10 seconds for the error to be thrown in your console after you Run.
 
-2. Fix the OutOfMemory error
+**Part 2**
 
-HINT: In java class HeapObjects.java, remove the static modifier from the attribute ```staticList``` 
+Fix the OutOfMemory error
+
+HINT: In java class HeapObjects.java, remove the static modifier from the attribute ```staticList```
+
+**Extra Credit**
+
+Observe the different behaviors in your Visual-VM Heap Monitor.
 
