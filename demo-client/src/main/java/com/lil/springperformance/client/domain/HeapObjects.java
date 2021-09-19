@@ -16,13 +16,34 @@ public class HeapObjects {
     private List<String> instanceList2 = new ArrayList<>();
 
     public void initStaticList() {
-        for (int i = 0; i < 1000000000; i++) {
+        for (int i = 0; i < 1750000; i++) {
             staticList.add(Math.random());
         }
     }
 
     public int getStaticListLength() {
         return staticList.size();
+    }
+
+    public String expensiveCalculation(int iterations) {
+        String  primeNumbers = "";
+        for (int i = 1; i <= iterations; i++)
+        {
+            int counter=0;
+            for(int num =i; num>=1; num--)
+            {
+                if(i%num==0)
+                {
+                    counter = counter + 1;
+                }
+            }
+            if (counter ==2)
+            {
+                //Appended the Prime number to the String
+                primeNumbers = primeNumbers + i + " ";
+            }
+        }
+        return primeNumbers;
     }
 
     public void initInstanceList() {

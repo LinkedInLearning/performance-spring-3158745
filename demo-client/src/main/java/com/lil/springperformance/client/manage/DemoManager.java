@@ -25,65 +25,61 @@ public class DemoManager {
 
     private static HeapObjects heapTester;
 
-    public DemoManager() {
-        logger.info("In constructor" );
-        ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
-        executorService.schedule(new NewTask(), 2, TimeUnit.SECONDS);
-        //initializeMemoryExamples();
-        //initializeThreadExamples();
-    }
+    public DemoManager(String demoMode) {
+        logger.info("Running in mode " + demoMode);
+        DemoManager.heapTester = new HeapObjects();
+        ScheduledExecutorService heapExecutorService = Executors.newSingleThreadScheduledExecutor();
+        heapExecutorService.schedule(new HeapLoaderTask(), 10, TimeUnit.SECONDS);
+        ScheduledExecutorService threadExecutorService = Executors.newSingleThreadScheduledExecutor();
+        threadExecutorService.schedule(new ThreadLoaderTask(), 20, TimeUnit.SECONDS);
 
-    public void initializeMemoryExamples() {
-        logger.info("Initializing memory examples" );
-        if (true) {
-            //heapTester.initStaticList();
-            //heapTester.initOpenConnection();
-        }
     }
 
     private void initializeThreadExamples() {
-        int a = 5; //Integer.getInteger(props.getRuntimeProperties().getProperty("thread.count", "5"));
-        int b = 10; //Integer.getInteger(props.getRuntimeProperties().getProperty("thread.load", "10"));
-        int c = 2; //Integer.getInteger(props.getRuntimeProperties().getProperty("thread.time", "2"));
         for (int x=0; x<5; x++) {
-            Thread t = new Thread(new HelloRunnable(x));
+            Thread t = new Thread(new CPULoaderTask(x));
             t.setName("DemoThread-" + x);
             t.start();
-            try {
-                Thread.sleep(5000);
-            } catch (InterruptedException e) {}
         }
     }
 
-    class NewTask implements Runnable {
+    class HeapLoaderTask implements Runnable {
 
         @Override
         public void run() {
-            logger.info(String.valueOf(heapTester.getStaticListLength()));
-            //heapTester.initStaticList();
-            //logger.info("" + heapTester.getStaticListLength());
+            logger.info("Loading up static heap things," );
+            DemoManager.heapTester.initStaticList();
+            logger.info(String.valueOf(DemoManager.heapTester.getStaticListLength()) + " Doubles added to static list.");
             logger.info("Task completed" );
         }
 
     }
 
+    class ThreadLoaderTask implements Runnable {
 
-    class HelloRunnable implements Runnable {
+        @Override
+        public void run() {
+            for(int x = 0; x<5;x++)  {
+                Thread t = new Thread(new CPULoaderTask(x));
+                t.setName("DemoThread-" + x);
+                t.start();
+            }
+        }
+    }
+
+
+    class CPULoaderTask implements Runnable {
 
         private int instanceCount;
 
-        private HeapObjects stackTester;
-
-        HelloRunnable(int counter) {
+        CPULoaderTask(int counter) {
             instanceCount = counter;
         }
 
         public void run() {
-            while(true) {
-                stackTester = new HeapObjects();
-                stackTester.initInstanceList();
-                stackTester.initOpenConnection();
-            }
+            logger.info("Loading up a new thread." );
+            String x = DemoManager.heapTester.expensiveCalculation(100000);
+            logger.info("result is " + x);
         }
 
     }

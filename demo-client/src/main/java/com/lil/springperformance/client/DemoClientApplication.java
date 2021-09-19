@@ -27,8 +27,8 @@ public class DemoClientApplication {
 		DemoClientApplication demoApplication = new DemoClientApplication();
 		SpringApplication.run(DemoClientApplication.class, args);
 		logger.info("Open this application in your browser at http://localhost:" + props.getRuntimeProperties().getProperty("server.port", ""));
+		demoManager = new DemoManager(props.getRuntimeProperties().getProperty("demo.mode", "baseline"));
 		context.close();
-		demoManager = new DemoManager();
 	}
 
 }
