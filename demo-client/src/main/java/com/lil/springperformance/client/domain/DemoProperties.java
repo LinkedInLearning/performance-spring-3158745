@@ -13,4 +13,6 @@ public class DemoProperties {
     public Properties getRuntimeProperties() {
         return runtimeProperties;
     }
+
+    public String getDemoMode() { return this.runtimeProperties.getProperty("demo.mode"); }
 }

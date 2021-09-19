@@ -17,6 +17,7 @@
         <property name="runtimeProperties">
             <props>
                 <prop key="server.port">${server.port}</prop>
+                <prop key="demo.mode">${demo.mode}</prop>
             </props>
         </property>
     </beans:bean>

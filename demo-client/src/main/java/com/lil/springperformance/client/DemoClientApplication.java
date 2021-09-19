@@ -6,6 +6,7 @@ import com.lil.springperformance.client.domain.DemoProperties;
 import com.lil.springperformance.client.manage.DemoManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -27,7 +28,7 @@ public class DemoClientApplication {
 		DemoClientApplication demoApplication = new DemoClientApplication();
 		SpringApplication.run(DemoClientApplication.class, args);
 		logger.info("Open this application in your browser at http://localhost:" + props.getRuntimeProperties().getProperty("server.port", ""));
-		demoManager = new DemoManager(props.getRuntimeProperties().getProperty("demo.mode", "baseline"));
+		demoManager = new DemoManager(props);
 		context.close();
 	}
 
