@@ -1,6 +1,6 @@
 ## Instructions
 
-Your JVM performance challenge has two parts.
+This JVM performance challenge has two parts.
 
 **Part 1**
 
