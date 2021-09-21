@@ -4,7 +4,7 @@ This JVM performance challenge has two parts.
 
 **Part 1**
 
-Force an OutOfMemory runtime error to be thrown when you run the demo-client application using property setting ```demo.mode=visual-vm```
+Force an OutOfMemory runtime error to be thrown when you run the demo-client application using property setting ```demo.mode=challenge-jvm```
 
 HINT: Set the ```demo.mode``` property in ```resources/application.properties```
 
@@ -16,7 +16,7 @@ HINT: If you get this right, it will take about 10 seconds for the error to be t
 
 **Part 2**
 
-Fix the OutOfMemory error
+Explaing and fix the OutOfMemory error
 
 HINT: In java class HeapObjects.java, remove the static modifier from the attribute ```staticList```
 
