@@ -1,19 +1,13 @@
 package com.lil.springperformance.client.manage;
 
-import com.lil.springperformance.client.DemoClientApplication;
+import com.lil.springperformance.client.domain.CpuLoader;
 import com.lil.springperformance.client.domain.DemoProperties;
-import com.lil.springperformance.client.domain.HeapObjects;
-import org.apache.commons.logging.Log;
+import com.lil.springperformance.client.domain.HeapLoader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -21,30 +15,70 @@ import java.util.concurrent.TimeUnit;
 public class DemoManager {
 
     private static Logger logger = LoggerFactory.getLogger(DemoManager.class);
+    private HeapLoader heapLeaker = new HeapLoader();
+    private HeapLoader[] heapLoad;
 
-    private HeapObjects heapLeaker = new HeapObjects();
+    private CpuLoader cpuLoader = new CpuLoader();
 
     public DemoManager(DemoProperties props) {
         logger.info("Running in demo mode: " + props.getDemoMode());
         switch (props.getDemoMode()) {
-            case "visual-vm": { initializeVvmConditions(); break; }
+            case "visual-vm": {
+                this.heapLoad = new HeapLoader[5];
+                initializeVvmHeapConditions(false);
+                initializeVvmThreadConditions();
+                break;
+            }
+            case "challenge-jvm": {
+                this.heapLoad = new HeapLoader[2];
+                initializeVvmHeapConditions(true);
+                initializeVvmThreadConditions();
+                break;
+            }
             default: { }
         }
     }
 
-    private void initializeVvmConditions() {
+    private void initializeVvmHeapConditions(boolean leakLoad) {
         ScheduledExecutorService heapLoadExecService = Executors.newSingleThreadScheduledExecutor();
+        heapLoadExecService.schedule(new HeapLoaderTask(leakLoad), 10, TimeUnit.SECONDS);
+    }
+
+    private void initializeVvmThreadConditions() {
         ScheduledExecutorService threadLoadExecService = Executors.newSingleThreadScheduledExecutor();
-        heapLoadExecService.schedule(new HeapLoaderTask(), 10, TimeUnit.SECONDS);
-        threadLoadExecService.schedule(new ThreadLoaderTask(), 20, TimeUnit.SECONDS);
+        threadLoadExecService.schedule(new ThreadLoaderTask(), 10, TimeUnit.SECONDS);
     }
 
     class HeapLoaderTask implements Runnable {
 
+        private boolean leakLoad;
+
+        HeapLoaderTask(boolean leak) {
+            if (leak) {
+                logger.info("Pssssst - look here for the challenge leak :)");
+                heapLeaker.initStaticDoubleList();
+                heapLeaker = null;
+            };
+        };
+
         @Override
         public void run() {
             logger.info("Loading up interesting heap things to look at in Visual VM." );
-            heapLeaker.initStaticList();
+            for(int x = 0; x < heapLoad.length; x++) {
+                //logger.info("Adding to the heap.");
+                //heapLoad[x] = new HeapLoader();
+                //heapLoad[x].initInstanceDoubleList();
+                try {
+                    Thread.sleep(5000);
+                } catch (Exception e) { }
+                if (x > 0) {
+                    //logger.info("Taking from the heap.");
+                    //heapLoad[x-1] = null;
+                }
+            }
+            //logger.info("Taking 2 from the heap.");
+            //heapLoad[0] = null;
+            //heapLoad[heapLoad.length] = null;
         }
 
     }
@@ -75,7 +109,7 @@ public class DemoManager {
             try {
                 Thread.sleep(3000 * instanceCount);
             } catch (Exception e) { }
-            String x = heapLeaker.expensiveCalculation(100000);
+            cpuLoader.expensiveCalculation(100000);
         }
 
     }
