@@ -1,14 +1,15 @@
 package com.lil.springperformance.client.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.springframework.beans.factory.annotation.Value;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Quote {
+public class DemoPayload {
 
     private String type;
     private Value value;
 
-    public Quote() {
+    public DemoPayload() {
     }
 
     public String getType() {
@@ -29,7 +30,7 @@ public class Quote {
 
     @Override
     public String toString() {
-        return "Quote{" +
+        return "DemoPayload{" +
                 "type='" + type + '\'' +
                 ", value=" + value +
                 '}';
