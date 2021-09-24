@@ -34,7 +34,6 @@ public class HeapLoader {
             URL url = new URL("http://kathyflint.com");
             URLConnection conn = url.openConnection();
             InputStream is = conn.getInputStream();
-            byte[] bytes = is.readAllBytes();
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }
