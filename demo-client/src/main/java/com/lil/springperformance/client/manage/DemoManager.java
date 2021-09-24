@@ -35,6 +35,10 @@ public class DemoManager {
                 initializeVvmThreadConditions();
                 break;
             }
+            case "glowroot": {
+
+                break;
+            }
             default: { }
         }
     }

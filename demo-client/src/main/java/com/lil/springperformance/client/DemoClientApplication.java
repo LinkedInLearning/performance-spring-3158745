@@ -1,18 +1,15 @@
 package com.lil.springperformance.client;
 
-import java.util.Arrays;
-
+import com.lil.springperformance.client.domain.DemoPayload;
+import com.lil.springperformance.client.domain._DemoPayload;
 import com.lil.springperformance.client.domain.DemoProperties;
 import com.lil.springperformance.client.manage.DemoManager;
-import com.lil.springperformance.client.domain.Quote;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.client.RestTemplateBuilder;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -43,9 +40,9 @@ public class DemoClientApplication {
 	@Bean
 	public CommandLineRunner run(RestTemplate restTemplate) throws Exception {
 		return args -> {
-			Quote quote = restTemplate.getForObject(
-					"https://quoters.apps.pcfone.io/api/random", Quote.class);
-			logger.info(quote.toString());
+			DemoPayload load = restTemplate.getForObject(
+					"https://quoters.apps.pcfone.io/api/random", DemoPayload.class);
+			logger.info(load.toString());
 		};
 	}
 

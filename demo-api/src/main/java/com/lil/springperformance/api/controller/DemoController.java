@@ -1,4 +1,4 @@
-package com.lil.springperformance.api;
+package com.lil.springperformance.api.controller;
 
 import com.lil.springperformance.api.domain.GenericResponse;
 import org.springframework.stereotype.Controller;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.concurrent.atomic.AtomicLong;
 
 @RestController
-public class DemoApiController {
+public class DemoController {
 
     private static final String template = "Hello, %s!";
     private final AtomicLong counter = new AtomicLong();
@@ -17,11 +17,6 @@ public class DemoApiController {
     @GetMapping("/")
     public GenericResponse index() {
         return new GenericResponse(-1, "Hello from Demo Api.");
-    }
-
-    @GetMapping("/error")
-    public GenericResponse error() {
-        return new GenericResponse(-1, "Error from Demo Api.");
     }
 
     @GetMapping("/hello-api")
