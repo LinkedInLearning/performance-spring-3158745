@@ -10,7 +10,7 @@ import java.time.LocalDate;
 
 
 @Component
-public class WeekendNotice implements HealthIndicator {
+public class WeekendHealth implements HealthIndicator {
 
     /*
     curl -i -X POST -H 'Content-Type: application/json' -d '{"configuredLevel": "TRACE"}' http://localhost:9092/actuator/loggers/com.lil.springperformance.api.DemoApiApplication
@@ -21,7 +21,8 @@ public class WeekendNotice implements HealthIndicator {
     @Override
     public Health health() {
         if (isWeekend()) {
-            return Health.outOfService().withDetail(message_key, "Yes!").build();
+            //return Health.outOfService().withDetail(message_key, "Yes!").build();
+            return Health.up().withDetail(message_key, "Yes!").build();
         }
         return Health.up().withDetail(message_key, "Nope.").build();
     }
