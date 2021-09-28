@@ -16,6 +16,8 @@ import org.slf4j.LoggerFactory;
 public class DemoController {
 
     private static Logger logger = LoggerFactory.getLogger(DemoController.class);
+    
+    private final String GET_OF_API = "https://quoters.apps.pcfone.io/api/random";
 
     //@Autowired
     //DeviceRepository deviceRepo;
@@ -35,15 +37,13 @@ public class DemoController {
         //return deviceRepo.getAllDevices();
     //}
 
-    @RequestMapping("/getServiceCall")
-    @ResponseBody
-    public String getServiceCall(){
-        //return args -> {
-            restTemplate.getForObject(
-                    "https://quoters.apps.pcfone.io/api/random", DemoPayload.class);
-            logger.info("what a hack");
-        //}
-        return "did it?";
+    @GetMapping("/quoter")
+    public String getQuoter() {
+        Quote quote = restTemplate.getForObject(
+                GET_OF_API, Quote.class);
+        logger.info(quote.toString());
+        return quote.toString();
+    }
 
     }
 
