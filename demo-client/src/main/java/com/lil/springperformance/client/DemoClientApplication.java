@@ -1,7 +1,6 @@
 package com.lil.springperformance.client;
 
-import com.lil.springperformance.client.domain.DemoPayload;
-import com.lil.springperformance.client.domain._DemoPayload;
+import com.lil.springperformance.client.domain.Quote_bak;
 import com.lil.springperformance.client.domain.DemoProperties;
 import com.lil.springperformance.client.manage.DemoManager;
 import org.slf4j.Logger;
@@ -40,9 +39,9 @@ public class DemoClientApplication {
 	@Bean
 	public CommandLineRunner run(RestTemplate restTemplate) throws Exception {
 		return args -> {
-			DemoPayload load = restTemplate.getForObject(
-					"https://quoters.apps.pcfone.io/api/random", DemoPayload.class);
-			logger.info(load.toString());
+			Quote_bak quote = restTemplate.getForObject(
+					"https://quoters.apps.pcfone.io/api/random", Quote_bak.class);
+			logger.info(quote.toString());
 		};
 	}
 

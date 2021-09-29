@@ -30,6 +30,14 @@ public class DemoController {
         return new GenericResponse(counter.incrementAndGet(), String.format(template, name));
     }
 
+    @GetMapping("/hello-long-wait")
+    public GenericResponse sayHelloLong(@RequestParam(name="name", required=false, defaultValue="Learner") String name) {
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) { }
+        return new GenericResponse(counter.incrementAndGet(), String.format(template, name));
+    }
+
 }
 
 

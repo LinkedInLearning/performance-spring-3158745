@@ -6,33 +6,33 @@ import org.springframework.beans.factory.annotation.Value;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class DemoPayload {
 
-    private String type;
-    private Value value;
+    private int id;
+    private String message;
 
     public DemoPayload() {
     }
 
-    public String getType() {
-        return type;
+    public int getId() {
+        return id;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public Value getValue() {
-        return value;
+    public String getMessage() {
+        return message;
     }
 
-    public void setValue(Value value) {
-        this.value = value;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     @Override
     public String toString() {
         return "DemoPayload{" +
-                "type='" + type + '\'' +
-                ", value=" + value +
+                "id='" + id + '\'' +
+                ", message=" + message +
                 '}';
     }
 }

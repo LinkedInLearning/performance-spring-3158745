@@ -2,6 +2,7 @@ package com.lil.springperformance.client.manage;
 
 import com.lil.springperformance.client.domain.DemoPayload;
 //import com.lil.springperformance.client.repository.DeviceRepository;
+import com.lil.springperformance.client.domain.Quote;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,7 +28,7 @@ public class DemoController {
 
     @GetMapping("/")
     public String index() {
-        return "Greetings from ClientDemo Application!";
+        return "Hello from Demo Client.";
     }
 
 
@@ -42,9 +43,18 @@ public class DemoController {
         Quote quote = restTemplate.getForObject(
                 GET_OF_API, Quote.class);
         logger.info(quote.toString());
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) { }
         return quote.toString();
     }
 
+    @GetMapping("/longwait")
+    public String getLongwait() {
+        DemoPayload payload = restTemplate.getForObject(
+                "http://localhost:9092/hello-long-wait", DemoPayload.class);
+        logger.info(payload.toString());
+        return payload.toString();
     }
 
 }
