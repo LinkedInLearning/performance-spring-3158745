@@ -1,0 +1,6 @@
+groups:
+  - name: node.rules
+    rules:
+      - alert: InstanceDown
+        expr: up{job="demo-api"} == 0
+        for: 5s

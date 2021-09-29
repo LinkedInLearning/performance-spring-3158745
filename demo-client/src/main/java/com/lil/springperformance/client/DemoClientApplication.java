@@ -1,19 +1,18 @@
 package com.lil.springperformance.client;
 
-import java.util.Arrays;
-
+import com.lil.springperformance.client.domain.Quote_bak;
 import com.lil.springperformance.client.domain.DemoProperties;
 import com.lil.springperformance.client.manage.DemoManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ApplicationContext;
+import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
 public class DemoClientApplication {
@@ -30,6 +29,20 @@ public class DemoClientApplication {
 		logger.info("Open this application in your browser at http://localhost:" + props.getRuntimeProperties().getProperty("server.port", ""));
 		demoManager = new DemoManager(props);
 		context.close();
+	}
+
+	@Bean
+	public RestTemplate restTemplate(RestTemplateBuilder builder) {
+		return builder.build();
+	}
+
+	@Bean
+	public CommandLineRunner run(RestTemplate restTemplate) throws Exception {
+		return args -> {
+			Quote_bak quote = restTemplate.getForObject(
+					"https://quoters.apps.pcfone.io/api/random", Quote_bak.class);
+			logger.info(quote.toString());
+		};
 	}
 
 }

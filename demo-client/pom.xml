@@ -14,7 +14,7 @@
 	<name>demo-client</name>
 	<description>Learning project for Spring performance tuning</description>
 	<properties>
-		<java.version>11</java.version>
+		<java.version>1.8</java.version>
 	</properties>
 	<dependencies>
 		<dependency>

@@ -3,11 +3,14 @@ package com.lil.springperformance.client.manage;
 import com.lil.springperformance.client.domain.CpuLoader;
 import com.lil.springperformance.client.domain.DemoProperties;
 import com.lil.springperformance.client.domain.HeapLoader;
+import com.lil.springperformance.client.domain.Quote_bak;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -33,6 +36,10 @@ public class DemoManager {
                 this.heapLoad = new HeapLoader[2];
                 initializeVvmHeapConditions(true);
                 initializeVvmThreadConditions();
+                break;
+            }
+            case "glowroot": {
+
                 break;
             }
             default: { }
