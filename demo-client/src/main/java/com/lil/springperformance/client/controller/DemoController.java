@@ -1,12 +1,11 @@
-package com.lil.springperformance.client.manage;
+package com.lil.springperformance.client.controller;
 
 import com.lil.springperformance.client.domain.DemoPayload;
-//import com.lil.springperformance.client.repository.DeviceRepository;
+import com.lil.springperformance.client.repository.DeviceRepository;
 import com.lil.springperformance.client.domain.Quote;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
@@ -18,10 +17,10 @@ public class DemoController {
 
     private static Logger logger = LoggerFactory.getLogger(DemoController.class);
     
-    private final String GET_OF_API = "https://quoters.apps.pcfone.io/api/random";
+    private final String QUOTER_API = "https://quoters.apps.pcfone.io/api/random";
 
-    //@Autowired
-    //DeviceRepository deviceRepo;
+    @Autowired
+    DeviceRepository deviceRepo;
 
     @Autowired
     private RestTemplate restTemplate;
@@ -31,17 +30,26 @@ public class DemoController {
         return "Hello from Demo Client.";
     }
 
+    @GetMapping("/error")
+    public String error() {
+        return "Oops";
+    }
 
-    //@RequestMapping("/getAllItems")
-    //@ResponseBody
-    //public List<Device> getAllItems(){
-        //return deviceRepo.getAllDevices();
-    //}
+    @RequestMapping("/oops")
+    public void handleRequest() {
+        throw new RuntimeException("test exception");
+    }
+
+
+    @GetMapping("/getdevice")
+    public String getDevice() {
+        return deviceRepo.getDevice(1).toString();
+    }
 
     @GetMapping("/quoter")
     public String getQuoter() {
         Quote quote = restTemplate.getForObject(
-                GET_OF_API, Quote.class);
+                QUOTER_API, Quote.class);
         logger.info(quote.toString());
         try {
             Thread.sleep(5000);

@@ -48,5 +48,13 @@ public class Device implements Serializable {
     public void setIsUp(boolean isUp) {
         this.isUp = isUp;
     }
+
+    @Override
+    public String toString() {
+        return "Quote{" +
+                "id='" + id + '\'' +
+                ", name=" + name +
+                '}';
+    }
 }
 
