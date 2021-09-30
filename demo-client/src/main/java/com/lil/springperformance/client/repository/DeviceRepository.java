@@ -29,8 +29,7 @@ public class DeviceRepository {
 
     public Device getDevice(int id){
         String query = "select * from device where id = ?";
-        Device device = jdbc.queryForObject(query,new Object[]{id},new BeanPropertyRowMapper<>(Device.class));
-        logger.info(device.toString());
+        Device device = jdbc.queryForObject(query, new BeanPropertyRowMapper<>(Device.class), id);
         return device;
     }
 }

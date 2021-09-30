@@ -94,7 +94,7 @@ public class DemoManager {
         @Override
         public void run() {
             logger.info("Loading up interesting thread things to look at in Visual VM." );
-            for(int x = 0; x<10;x++)  {
+            for(int x = 0; x<5;x++)  {
                 Thread t = new Thread(new CPULoaderTask(x));
                 t.setName("DemoThread-" + x);
                 t.start();
@@ -115,7 +115,8 @@ public class DemoManager {
             try {
                 Thread.sleep(3000 * instanceCount);
             } catch (Exception e) { }
-            cpuLoader.expensiveCalculation(100000);
+            //cpuLoader.expensiveCalculation(100000);
+            cpuLoader.expensiveCalculation(instanceCount * 50000);
         }
 
     }

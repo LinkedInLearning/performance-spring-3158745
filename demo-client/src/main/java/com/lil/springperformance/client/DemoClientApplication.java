@@ -1,5 +1,6 @@
 package com.lil.springperformance.client;
 
+import com.lil.springperformance.client.domain.CpuLoader;
 import com.lil.springperformance.client.domain.Quote;
 import com.lil.springperformance.client.domain.DemoProperties;
 import com.lil.springperformance.client.manage.DemoManager;
@@ -32,6 +33,11 @@ public class DemoClientApplication {
 	}
 
 	@Bean
+	public CpuLoader tracer(){
+		return new CpuLoader();
+	}
+
+	@Bean
 	public RestTemplate restTemplate(RestTemplateBuilder builder) {
 		return builder.build();
 	}
@@ -41,7 +47,6 @@ public class DemoClientApplication {
 		return args -> {
 			Quote quote = restTemplate.getForObject(
 					"https://quoters.apps.pcfone.io/api/random", Quote.class);
-			logger.info(quote.toString());
 		};
 	}
 

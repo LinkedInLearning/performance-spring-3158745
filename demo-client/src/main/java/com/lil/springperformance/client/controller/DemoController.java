@@ -1,5 +1,6 @@
 package com.lil.springperformance.client.controller;
 
+import com.lil.springperformance.client.domain.CpuLoader;
 import com.lil.springperformance.client.domain.DemoPayload;
 import com.lil.springperformance.client.repository.DeviceRepository;
 import com.lil.springperformance.client.domain.Quote;
@@ -19,20 +20,25 @@ public class DemoController {
     
     private final String QUOTER_API = "https://quoters.apps.pcfone.io/api/random";
 
+    private final String DEMO_API = "http://localhost:9092/hello-long-wait";
+
     @Autowired
-    DeviceRepository deviceRepo;
+    private DeviceRepository deviceRepo;
 
     @Autowired
     private RestTemplate restTemplate;
+
+    @Autowired
+    private CpuLoader tracer;
 
     @GetMapping("/")
     public String index() {
         return "Hello from Demo Client.";
     }
 
-    @GetMapping("/error")
-    public String error() {
-        return "Oops";
+    @GetMapping("/err")
+    public String err() {
+         return "Oops";
     }
 
     @RequestMapping("/oops")
@@ -40,9 +46,14 @@ public class DemoController {
         throw new RuntimeException("test exception");
     }
 
+    @GetMapping("/monitor")
+    public String monitor() {
+        tracer.expensiveCalculation(10000);
+        return "Check Logs";
+    }
 
-    @GetMapping("/getdevice")
-    public String getDevice() {
+    @GetMapping("/query")
+    public String getQuery() {
         return deviceRepo.getDevice(1).toString();
     }
 
@@ -50,7 +61,6 @@ public class DemoController {
     public String getQuoter() {
         Quote quote = restTemplate.getForObject(
                 QUOTER_API, Quote.class);
-        logger.info(quote.toString());
         try {
             Thread.sleep(5000);
         } catch (InterruptedException e) { }
@@ -60,8 +70,7 @@ public class DemoController {
     @GetMapping("/longwait")
     public String getLongwait() {
         DemoPayload payload = restTemplate.getForObject(
-                "http://localhost:9092/hello-long-wait", DemoPayload.class);
-        logger.info(payload.toString());
+                DEMO_API, DemoPayload.class);
         return payload.toString();
     }
 
