@@ -17,14 +17,18 @@ rule_files:
 
 # A scrape configuration containing exactly one endpoint to scrape:
 scrape_configs:
-  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
-  - job_name: "prometheus"
+  - job_name: 'Demo UI'
+    metrics_path: '/actuator/prometheus'
     static_configs:
-      - targets: ["localhost:9090"]
+      - targets: ['localhost:9091']
 
-  - job_name: "demo-api"
-    metrics_path: "/actuator/prometheus"
+  - job_name: 'Demo API'
+    metrics_path: '/actuator/prometheus'
     static_configs:
-      - targets: ["localhost:9092"]
+      - targets: ['localhost:9092']
+
+  - job_name: 'Prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
 
 
