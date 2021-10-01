@@ -20,7 +20,7 @@ public class DemoController {
     
     private final String QUOTER_API = "https://quoters.apps.pcfone.io/api/random";
 
-    private final String DEMO_API = "http://localhost:9092/hello-long-wait";
+    private final String DEMO_API = "http://localhost:9092";
 
     @Autowired
     private DeviceRepository deviceRepo;
@@ -70,7 +70,14 @@ public class DemoController {
     @GetMapping("/longwait")
     public String getLongwait() {
         DemoPayload payload = restTemplate.getForObject(
-                DEMO_API, DemoPayload.class);
+                DEMO_API + "/hello-long-wait", DemoPayload.class);
+        return payload.toString();
+    }
+
+    @GetMapping("/devices")
+    public String getDevices() {
+        DemoPayload payload = restTemplate.getForObject(
+                DEMO_API + "/devices", DemoPayload.class);
         return payload.toString();
     }
 
