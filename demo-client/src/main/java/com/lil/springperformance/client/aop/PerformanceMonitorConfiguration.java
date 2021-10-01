@@ -1,6 +1,5 @@
 package com.lil.springperformance.client.aop;
 
-import com.lil.springperformance.client.domain.CpuLoader;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.aop.Advisor;
@@ -17,7 +16,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 public class PerformanceMonitorConfiguration {
 
     @Bean
-    public PerformanceMonitorInterceptor performanceMonitorInterceptor() {
+    public PerformanceMonitorInterceptor invocationInterceptor() {
         return new PerformanceMonitorInterceptor(true);
     }
 
@@ -28,11 +27,11 @@ public class PerformanceMonitorConfiguration {
     public Advisor performanceMonitorAdvisor() {
         AspectJExpressionPointcut pointcut = new AspectJExpressionPointcut();
         pointcut.setExpression("com.lil.springperformance.client.aop.PerformanceMonitorConfiguration.monitor()");
-        return new DefaultPointcutAdvisor(pointcut, performanceMonitorInterceptor());
+        return new DefaultPointcutAdvisor(pointcut, invocationInterceptor());
     }
 
     @Bean
-    public CustomPerformanceMonitorInterceptor customPerformanceMonitorInterceptor() {
+    public CustomPerformanceMonitorInterceptor customInterceptor() {
         return new CustomPerformanceMonitorInterceptor(true);
     }
 
@@ -43,6 +42,7 @@ public class PerformanceMonitorConfiguration {
     public Advisor customPerformanceMonitorAdvisor() {
         AspectJExpressionPointcut pointcut = new AspectJExpressionPointcut();
         pointcut.setExpression("com.lil.springperformance.client.aop.PerformanceMonitorConfiguration.customMonitor()");
-        return new DefaultPointcutAdvisor(pointcut, customPerformanceMonitorInterceptor());
+        return new DefaultPointcutAdvisor(pointcut, customInterceptor());
     }
+
 }
