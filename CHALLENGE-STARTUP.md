@@ -1,6 +1,6 @@
 ## Instructions
 
-For this challenge, modify the demo-client application startup configuration to report only the start-up events that are initiated by spring.boot
+For this challenge, modify the demo-client application startup configuration to report only the start-up events that are initiated by the spring.boot framework.
 
 HINT: Apply a filter to the BufferingApplicationStartup instance in the main() method of DemoClientApplaction.java
 
