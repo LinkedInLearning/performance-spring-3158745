@@ -21,24 +21,11 @@ public class DemoApiApplication {
 	public static void main(String[] args) {
 		AbstractApplicationContext context = new ClassPathXmlApplicationContext("/META-INF/spring/application.xml", DemoApiApplication.class);
 		DemoProperties props = (DemoProperties) context.getBean("appProperties");
-		//DemoApiApplication demoApplication = new DemoApiApplication();
-		//SpringApplication.run(DemoApiApplication.class, args);
-		SpringApplication sa = new SpringApplication(DemoApiApplication.class);
-		//sa.setApplicationStartup(new BufferingApplicationStartup(2048));
-		sa.setApplicationStartup(new FlightRecorderApplicationStartup());
-		sa.run(args);
+		SpringApplication demoApplication = new SpringApplication(DemoApiApplication.class);
+		demoApplication.setApplicationStartup(new FlightRecorderApplicationStartup());
+		demoApplication.run(args);
 		logger.info("Open this application in your browser at http://localhost:" + props.getRuntimeProperties().getProperty("server.port", ""));
 		context.close();
 	}
 
-	/*
-	@Bean
-	public CommandLineRunner run(RestTemplate restTemplate) throws Exception {
-		return args -> {
-			Quote quote = restTemplate.getForObject(
-					"https://quoters.apps.pcfone.io/api/random", Quote.class);
-			logger.info(quote.toString());
-		};
-	}
-	*/
 }
