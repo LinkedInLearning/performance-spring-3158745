@@ -2,7 +2,7 @@
   <configuration default="false" name="DemoClientApplication" type="Application" factoryName="Application" nameIsGenerated="true">
     <option name="MAIN_CLASS_NAME" value="com.lil.springperformance.client.DemoClientApplication" />
     <module name="client" />
-    <option name="VM_PARAMETERS" value="-Xmx100M -Xms100M -javaagent:$USER_HOME$/perf_utils/glowroot-0.13.6-dist/glowroot/glowroot.jar -XX:+FlightRecorder -XX:StartFlightRecording=duration=10s,filename=flight-client2.jfr" />
+    <option name="VM_PARAMETERS" value="-Xmx100M -Xms100M -javaagent:$USER_HOME$/perf_util/glowroot-0.13.6-dist/glowroot/glowroot.jar" />
     <extension name="coverage">
       <pattern>
         <option name="PATTERN" value="com.lil.springperformance.client.*" />

@@ -28,10 +28,8 @@ public class DemoClientApplication {
 		AbstractApplicationContext context = new ClassPathXmlApplicationContext("/META-INF/spring/application.xml", DemoClientApplication.class);
 		DemoProperties props = (DemoProperties) context.getBean("appProperties");
 		SpringApplication demoApplication = new SpringApplication(DemoClientApplication.class);
-		//demoApplication.setApplicationStartup(new BufferingApplicationStartup(10000));
 		BufferingApplicationStartup bas = new BufferingApplicationStartup(10000);
-		//applicationStartup.addFilter(startupStep -> startupStep.getName().startsWith("spring.beans.instantiate"));
-		demoApplication.setApplicationStartup(new FlightRecorderApplicationStartup());
+		demoApplication.setApplicationStartup(bas);
 		demoApplication.run(args);
 		logger.info("Open this application in your browser at http://localhost:" + props.getRuntimeProperties().getProperty("server.port", ""));
 		demoManager = new DemoManager(props);
