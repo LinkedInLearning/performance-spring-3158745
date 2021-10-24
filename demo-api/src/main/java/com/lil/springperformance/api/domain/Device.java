@@ -1,10 +1,13 @@
 package com.lil.springperformance.api.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.io.Serializable;
 
 @Entity
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Device implements Serializable {
 
     @Id

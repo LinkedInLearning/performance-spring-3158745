@@ -14,9 +14,9 @@ public class CpuLoader {
     private List<Double> doubleInstanceList = new ArrayList<>();
 
     public String expensiveCalculation(int iterations) {
-        //for (int i = 0; i < 75000; i++) {
-            //doubleInstanceList.add(Math.random());
-        //}
+        for (int i = 0; i < 75000; i++) {
+            doubleInstanceList.add(Math.random());
+        }
         String  primeNumbers = "";
         for (int i = 1; i <= iterations; i++)
         {

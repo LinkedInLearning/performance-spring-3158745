@@ -74,16 +74,18 @@ public class DemoManager {
         public void run() {
             logger.info("Loading up interesting heap things to look at in Visual VM." );
             for(int x = 0; x < heapLoad.length; x++) {
+                logger.info("Adding 1 to the heap.");
                 heapLoad[x] = new HeapLoader();
                 heapLoad[x].initInstanceDoubleList();
                 try {
                     Thread.sleep(5000);
                 } catch (Exception e) { }
                 if (x > 0) {
+                    logger.info("Taking 1 from the heap.");
                     heapLoad[x-1] = null;
                 }
             }
-             heapLoad[0] = null;
+            logger.info("Taking 1 from the heap.");
             heapLoad[heapLoad.length] = null;
         }
 

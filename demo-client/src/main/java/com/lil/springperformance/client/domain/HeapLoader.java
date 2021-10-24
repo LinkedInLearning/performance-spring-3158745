@@ -31,7 +31,7 @@ public class HeapLoader {
 
     public void initOpenConnection() {
         try {
-            URL url = new URL("http://kathyflint.com");
+            URL url = new URL("http://spring.io");
             URLConnection conn = url.openConnection();
             InputStream is = conn.getInputStream();
         } catch (IOException ioe) {
