@@ -6,7 +6,6 @@ target/
 *.log
 *.jfr
 
-
 ### STS ###
 .apt_generated
 .classpath
