@@ -1,6 +1,9 @@
 package com.lil.springperformance.client.repository;
 
+import com.lil.springperformance.client.DemoClientApplication;
 import com.lil.springperformance.client.domain.Device;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -13,6 +16,8 @@ public class DeviceRepository {
 
     //https://www.onlinetutorialspoint.com/spring-boot/spring-boot-h2-database-jdbc-example.html
 
+    private static Logger logger = LoggerFactory.getLogger(DeviceRepository.class);
+
     @Autowired
     JdbcTemplate jdbc;
 
@@ -23,9 +28,8 @@ public class DeviceRepository {
     }
 
     public Device getDevice(int id){
-        String query = "SELECT * FROM ITEM WHERE ID=?";
-        Device device = jdbc.queryForObject(query,new Object[]{id},new BeanPropertyRowMapper<>(Device.class));
-
+        String query = "select * from device where id = ?";
+        Device device = jdbc.queryForObject(query, new BeanPropertyRowMapper<>(Device.class), id);
         return device;
     }
 }

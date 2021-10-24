@@ -1,15 +1,8 @@
 package com.lil.springperformance.client.manage;
 
-import com.lil.springperformance.client.domain.CpuLoader;
-import com.lil.springperformance.client.domain.DemoProperties;
-import com.lil.springperformance.client.domain.HeapLoader;
-import com.lil.springperformance.client.domain.Quote_bak;
+import com.lil.springperformance.client.domain.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.boot.web.client.RestTemplateBuilder;
-import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Component;
-import org.springframework.web.client.RestTemplate;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -18,6 +11,8 @@ import java.util.concurrent.TimeUnit;
 public class DemoManager {
 
     private static Logger logger = LoggerFactory.getLogger(DemoManager.class);
+
+    private DemoProperties demoProps;
     private HeapLoader heapLeaker = new HeapLoader();
     private HeapLoader[] heapLoad;
 
@@ -39,7 +34,7 @@ public class DemoManager {
                 break;
             }
             case "glowroot": {
-
+                initializeGrBackgroundConditions(7000);
                 break;
             }
             default: { }
@@ -54,6 +49,13 @@ public class DemoManager {
     private void initializeVvmThreadConditions() {
         ScheduledExecutorService threadLoadExecService = Executors.newSingleThreadScheduledExecutor();
         threadLoadExecService.schedule(new ThreadLoaderTask(), 10, TimeUnit.SECONDS);
+    }
+
+    private void initializeGrBackgroundConditions(int sleepTime) {
+        logger.info("Setting up interesting transaction things to look at in Glowroot.");
+        try {
+            Thread.sleep(sleepTime);
+        } catch (InterruptedException e) { }
     }
 
     class HeapLoaderTask implements Runnable {
@@ -72,20 +74,19 @@ public class DemoManager {
         public void run() {
             logger.info("Loading up interesting heap things to look at in Visual VM." );
             for(int x = 0; x < heapLoad.length; x++) {
-                //logger.info("Adding to the heap.");
-                //heapLoad[x] = new HeapLoader();
-                //heapLoad[x].initInstanceDoubleList();
+                logger.info("Adding 1 to the heap.");
+                heapLoad[x] = new HeapLoader();
+                heapLoad[x].initInstanceDoubleList();
                 try {
                     Thread.sleep(5000);
                 } catch (Exception e) { }
                 if (x > 0) {
-                    //logger.info("Taking from the heap.");
-                    //heapLoad[x-1] = null;
+                    logger.info("Taking 1 from the heap.");
+                    heapLoad[x-1] = null;
                 }
             }
-            //logger.info("Taking 2 from the heap.");
-            //heapLoad[0] = null;
-            //heapLoad[heapLoad.length] = null;
+            logger.info("Taking 1 from the heap.");
+            heapLoad[heapLoad.length] = null;
         }
 
     }
@@ -95,7 +96,7 @@ public class DemoManager {
         @Override
         public void run() {
             logger.info("Loading up interesting thread things to look at in Visual VM." );
-            for(int x = 0; x<10;x++)  {
+            for(int x = 0; x<5;x++)  {
                 Thread t = new Thread(new CPULoaderTask(x));
                 t.setName("DemoThread-" + x);
                 t.start();
@@ -116,7 +117,8 @@ public class DemoManager {
             try {
                 Thread.sleep(3000 * instanceCount);
             } catch (Exception e) { }
-            cpuLoader.expensiveCalculation(100000);
+            //cpuLoader.expensiveCalculation(100000);
+            cpuLoader.expensiveCalculation(instanceCount * 50000);
         }
 
     }

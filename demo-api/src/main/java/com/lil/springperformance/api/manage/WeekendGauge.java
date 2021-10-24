@@ -8,9 +8,9 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 
 @Component
-public class WeekendGuage {
+public class WeekendGauge {
 
-    public WeekendGuage(MeterRegistry registry) {
+    public WeekendGauge(MeterRegistry registry) {
         registry.gauge("weekend.wait.in.days", Tags.empty(), weekendCountdown());
     }
 
