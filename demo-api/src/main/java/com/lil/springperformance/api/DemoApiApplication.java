@@ -22,8 +22,8 @@ public class DemoApiApplication {
 		AbstractApplicationContext context = new ClassPathXmlApplicationContext("/META-INF/spring/application.xml", DemoApiApplication.class);
 		DemoProperties props = (DemoProperties) context.getBean("appProperties");
 		SpringApplication demoApplication = new SpringApplication(DemoApiApplication.class);
-		FlightRecorderApplicationStartup frs = new FlightRecorderApplicationStartup();
-		demoApplication.setApplicationStartup(frs);
+		//FlightRecorderApplicationStartup frs = new FlightRecorderApplicationStartup();
+		//demoApplication.setApplicationStartup(frs);
 		demoApplication.run(args);
 		logger.info("Open this application in your browser at http://localhost:" + props.getRuntimeProperties().getProperty("server.port", ""));
 		context.close();
