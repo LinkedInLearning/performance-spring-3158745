@@ -10,7 +10,7 @@ If you get this right, it will take about 10 seconds for the error to be thrown 
 
 HINT: Set the ```demo.mode``` property in ```resources/application.properties```
 
-HINT: Set your max JVM heap runtime parameter for the demo-client application to something around 50 MB. See below for IntelliJ instructions.
+HINT: Set your max JVM heap runtime parameter for the demo-client application to 100 MB. See below for IntelliJ instructions.
 
 
 
