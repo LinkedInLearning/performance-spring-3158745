@@ -10,6 +10,8 @@ import java.time.LocalDate;
 @Component
 public class WeekendHealth implements HealthIndicator {
 
+    /* Please view lesson 02_02 for a detailed explanation of the below code */
+
     private final String message_key = "Play time?";
 
     @Override

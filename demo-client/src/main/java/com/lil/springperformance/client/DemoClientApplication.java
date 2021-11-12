@@ -28,6 +28,7 @@ public class DemoClientApplication {
 		AbstractApplicationContext context = new ClassPathXmlApplicationContext("/META-INF/spring/application.xml", DemoClientApplication.class);
 		DemoProperties props = (DemoProperties) context.getBean("appProperties");
 		SpringApplication demoApplication = new SpringApplication(DemoClientApplication.class);
+		//Below lines require JVM parameters in order to run. This is covered in lesson 03_03.
 		//BufferingApplicationStartup bas = new BufferingApplicationStartup(10000);
 		//demoApplication.setApplicationStartup(bas);
 		demoApplication.run(args);

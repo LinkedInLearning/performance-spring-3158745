@@ -5,6 +5,8 @@ _See the readme file in the main branch for updated instructions and information
 ## Instructions
 This repository has one branch that serves all the lessons in the course. The application in the main branch has several lesson modes which can be toggled in a properties file as instructed in the individual lessons.
 
+The main branch of this repository contains the accumulated work of the entire course. There are notes at different points in the source code to point the learner to the lesson where the material is covered.
+
 There are two spring boot applications contained in this repository: `demo-client` and `demo-api`. These are used to create lesson demonstrations as instructed in the individual lessons.
 
  ## Installing
@@ -20,18 +22,24 @@ There are two spring boot applications contained in this repository: `demo-clien
 1. From IDEA Welcome screen, select **Open or Import**
 2. Choose the root directory of your newly cloned repository: `/performance-spring-3158745`
 3. Within IntelliJ, make sure your Project SDK is set to Java 1.8 or higher. (File > Project Structure)
-3. From the Project View, context-click on the file `demo/pom.xml`
-4. Select **+ Add as Maven project**. This will cause project dependencies to download from the internet.
-5. Context-click on the file `demo/src/main/java/com.lil.springperformance.DemoApplication.java`
-6. Select **Run**
-7. Open the application in your browser at `http://localhost:9090`
+4. From the Project View, context-click on the file `demo-client/pom.xml`
+5. Select **+ Add as Maven project**. This will cause project dependencies to download from the internet.
+6. Context-click on the file `demo-client/src/main/java/com.lil.springperformance.DemoClientApplication.java`
+7. Select **Run**
+8. Open the demo-client application in your browser at `http://localhost:9091`
+9. From the Project View, context-click on the file `demo-api/pom.xml`
+10. Select **+ Add as Maven project**.
+11. Context-click on the file `demo-api/src/main/java/com.lil.springperformance.DemoApiApplication.java`
+12. Select **Run**
+13. Open the demo-api application in your browser at `http://localhost:9092`
+
 
 ### Run from Command Line
 
-1. In your terminal, navigate to directory `/performance-spring-3158745/demo`
+1. In your terminal, navigate to either `/performance-spring-3158745/demo-client` or `/demo-api`
 2. Execute `mvn clean package`
 3. Execute `mvn spring-boot:run`
-4. Open the app in your browser at `http://localhost:9090`
+4. Open the app in your browser using the localhost address shown in the startup console log messages.
 
 ### Instructor
 
