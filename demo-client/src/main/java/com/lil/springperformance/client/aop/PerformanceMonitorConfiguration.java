@@ -15,7 +15,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 @Aspect
 public class PerformanceMonitorConfiguration {
 
-    /* Please view lesson 02_02 for a detailed explanation of the below code */
+    /* Please view lesson 02_04 for a detailed explanation of the below code */
 
     @Bean
     public PerformanceMonitorInterceptor invocationInterceptor() {
