@@ -1,15 +1,11 @@
 # Performance Tuning in Spring Apps
-This is the repository for the LinkedIn Learning course `Performance Tuning in Spring Apps`. The full course is available from [LinkedIn Learning][lil-course-url].
+This is the repository for the LinkedIn Learning course Performance Tuning in Spring Apps. The full course is available from [LinkedIn Learning][lil-course-url].
 
-_See the readme file in the main branch for updated instructions and information._
-## Instructions
-This repository has one branch that serves all the lessons in the course. The application in the main branch has several lesson modes which can be toggled in a properties file as instructed in the individual lessons.
+![Performance Tuning in Spring Apps][lil-thumbnail-url] 
 
-The main branch of this repository contains the accumulated work of the entire course. There are notes at different points in the source code to point the learner to the lesson where the material is covered.
+Resilient and reliable application performance is an essential aspect of every successful enterprise-scale application. Unfortunately, it can be quite challenging to deliver well-considered performance objectives and results. In this course, instructor Kathy Flint teaches Java professionals working with Spring apps how to address the multi-faceted aspects of performance engineering to deliver high-performing applications that respond to business needs. First, Kathy makes sure you understand Spring application performance. Then she shows you how to configure and use the Spring Actuator, as well as how to customize Spring performance logging. Kathy explains several common Spring performance challenges and what you can do about them. She goes over how to compile a performance profile and offers a few key practices and tools that a Spring developer can adopt in any situation. Kathy finishes up with ways you can discuss and demonstrate performance goals and metrics.
 
-There are two spring boot applications contained in this repository: `demo-client` and `demo-api`. These are used to create lesson demonstrations as instructed in the individual lessons.
-
- ## Installing
+## Installing
 1. To use these exercise files, you must have the following installed:
 	- Java 8 or higher
 	- Maven
@@ -43,13 +39,13 @@ There are two spring boot applications contained in this repository: `demo-clien
 
 ### Instructor
 
-**Kathy D. Flint**
+Kathy Flint 
+                            
 
 _Software Engineer and Application Architect_
+                            
 
-Check out my other courses on [LinkedIn Learning](https://www.linkedin.com/learning/instructors/kathy-flint?u=104).
+Check out my other courses on [LinkedIn Learning](https://www.linkedin.com/learning/instructors/kathy-flint).
 
-[lil-course-url]: https://www.linkedin.com/learning/spring-spring-integration
-[lil-thumbnail-url]: https://cdn.lynda.com/course/2848253/2848253-1611257542249-16x9.jpg
-    
-
+[lil-course-url]: https://www.linkedin.com/learning/performance-tuning-in-spring-apps
+[lil-thumbnail-url]: https://cdn.lynda.com/course/3158745/3158745-1637107870964-16x9.jpg
